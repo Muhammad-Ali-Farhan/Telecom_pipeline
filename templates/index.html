@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Data Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #505050;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px 2px gray;
+            transition: 0.1s;
+        }
+        button:hover {
+            background-color: #202020;
+            box-shadow: 0 0 10px 5px rgb(87, 87, 87);
+        }
+        .message {
+            color: green;
+            font-weight: bold;
+        }
+        .view-data-btn {
+            background-color: ##505050; /* Bootstrap primary color */
+            margin-top: 20px; /* Add some space above the button */
+        }
+        .view-data-btn:hover {
+            background-color: #202020; /* Darker blue on hover */
+            box-shadow: 0 0 10px 5px rgb(88, 88, 88);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Call Details</h1>
+    <form method="POST">
+        <label for="caller">Caller Number:</label>
+        <input type="text" id="caller" name="caller" required>
+
+        <label for="receiver">Receiver Number:</label>
+        <input type="text" id="receiver" name="receiver" required>
+
+        <label for="duration">Duration (in seconds):</label>
+        <input type="number" id="duration" name="duration" required>
+
+        <label for="timestamp">Timestamp (YYYY-MM-DD HH:MM:SS):</label>
+        <input type="text" id="timestamp" name="timestamp" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+
+    <!-- Button to view data -->
+    <form action="/data" method="get">
+        <button type="submit" class="view-data-btn">View Data in Warehouse</button>
+    </form>
+</body>
+</html>
