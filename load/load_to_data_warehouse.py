@@ -31,7 +31,7 @@ def load_to_data_warehouse(caller, receiver, duration, timestamp):
 
 def fetch_data_from_warehouse():
     conn = psycopg2.connect(**WAREHOUSE_CREDENTIALS)
-    query = "SELECT * FROM call_records_warehouse"  # Adjust the table name if needed
-    df = pd.read_sql(query, conn)  # Use pandas to fetch data directly into a DataFrame
+    query = "SELECT * FROM call_records_warehouse"  
+    df = pd.read_sql(query, conn)  
     conn.close()
     return df

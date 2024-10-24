@@ -17,7 +17,7 @@ def index():
         duration = request.form['duration']
         timestamp = request.form['timestamp']
 
-        # Load the data into the warehouse
+        
         load_to_data_warehouse(caller, receiver, duration, timestamp)
         message = "Data has been successfully saved to the warehouse."
 
@@ -25,13 +25,13 @@ def index():
 
 @app.route('/data', methods=['GET'])
 def view_data():
-    # Connect to the warehouse and fetch data
+    
     conn = psycopg2.connect(**WAREHOUSE_CREDENTIALS)
     query = "SELECT * FROM call_records_warehouse"
     df = pd.read_sql_query(query, conn)
     conn.close()
 
-    # Convert DataFrame to HTML
+    
     data_html = df.to_html(classes='data', index=False)
 
     return render_template('view_data.html', data=data_html)
